@@ -2,7 +2,7 @@
 <html lang="ja" data-sale="soon">
 <head>
 <script>
-/* チケット発売（日本時間 2026/11/11 20:00）を過ぎたら data-sale="soon" を外し、購入ボタンを出す。
+/* チケット発売（日本時間 2026/11/11 20:00）を過ぎたら data-sale="soon" を外し、ボタンの文言を「発売中」に替える。
    開いたまま発売時刻をまたいでも切り替わるよう、手前ならその時刻に外す */
 (function(){var t=Date.parse('2026-11-11T20:00:00+09:00'),r=function(){document.documentElement.removeAttribute('data-sale')},d=t-Date.now();if(d<=0)r();else if(d<864e5)setTimeout(r,d)})();
 </script>
@@ -628,8 +628,8 @@ body.tk-full .head,body.tk-cover .head{opacity:0;pointer-events:none}
 .pouch,#sheet{display:none}
 /* スマホの下には、拾得物ではなくチケットを出す。KVを過ぎたら出し、応募の場面では引っ込める */
 .dock{display:none}
-/* 発売前は、押しても買えないチケットボタンを出さない。<head> の先頭で発売時刻を過ぎたら data-sale="soon" を外す */
-html[data-sale="soon"] .sale-cta{display:none!important}
+/* チケット販売ページは公開済みなので、ボタンは発売前から押せる。文言だけ発売時刻で替える（<head> の先頭で data-sale="soon" を外す） */
+html[data-sale="soon"] .on-sale{display:none!important}
 html:not([data-sale="soon"]) .pre-sale{display:none!important}
 @media (max-width:640px){
   .pouch{display:none!important}
@@ -918,7 +918,7 @@ svg.stamp text{fill:currentColor;stroke:none;text-anchor:middle;font-family:var(
     <a class="name" href="#top">東京メトロ 整備課 異失物係</a>
     <div class="tools">
       <span class="found" id="found" title="ページのどこかに落ちている異失物を3件拾うと業務完了"><span class="fl">拾った異失物</span><i></i><i></i><i></i><b id="foundTxt">0/3</b></span>
-      <a class="tk sale-cta" href="https://escape.id/uzu-org/e-metro_ishitsu/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/></svg><span class="tkl"><b>チケット</b><small id="tkWhen">発売中</small></span></a>
+      <a class="tk sale-cta" href="https://escape.id/uzu-org/e-metro_ishitsu/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/></svg><span class="tkl"><b>チケット</b><small id="tkWhen"><span class="pre-sale">11/11 20:00発売</span><span class="on-sale">発売中</span></small></span></a>
       <button class="burger" id="burger" type="button" aria-label="メニューを開く" aria-controls="menu"><i></i><i></i><i></i></button>
     </div>
   </div>
@@ -942,7 +942,7 @@ svg.stamp text{fill:currentColor;stroke:none;text-anchor:middle;font-family:var(
     <li><a href="#window"><b>L09</b><span>チケット</span></a></li>
     </ol>
     <div class="m-foot">
-      <a class="btn light sale-cta" href="https://escape.id/uzu-org/e-metro_ishitsu/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/></svg><span class="tx">チケットを購入する</span></a>
+      <a class="btn light sale-cta" href="https://escape.id/uzu-org/e-metro_ishitsu/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/></svg><span class="tx"><span class="pre-sale">チケット販売ページへ</span><span class="on-sale">チケットを購入する</span></span></a>
       <p class="m-links"><a href="https://form.run/@metro-ishitsu" target="_blank" rel="noopener">お問い合わせ</a><!-- 公式X稼働後に戻す <a href="https://x.com/seibika_ishitsu" target="_blank" rel="noopener">公式X</a> --></p>
       <button class="lost in-menu" data-id="3" aria-label="落ちている異失物（定期入れ）を拾う"><svg class="ghost" width="100" height="78" viewBox="0 0 100 78" aria-hidden="true"><path d="M12 28 C3 21 3 8 12 6" fill="none" stroke="#FFF7E4" stroke-width="3" stroke-linecap="round"/><circle cx="13" cy="29" r="4" fill="#FFF7E4"/><rect x="16" y="18" width="76" height="50" rx="8" fill="#FFF7E4"/><rect x="22" y="24" width="64" height="38" rx="4" fill="#EDE2C8"/><rect x="28" y="31" width="11" height="8" rx="1.5" fill="#FFF7E4"/><path d="M28 48 H66 M28 54 H54" stroke="#FFF7E4" stroke-width="2.4" stroke-linecap="round"/><path d="M90 28 C97 32 97 40 94 46" fill="none" stroke="#FFF7E4" stroke-width="1.2"/><g transform="translate(76 46) rotate(14)"><path d="M0 5 L5 0 H24 V18 H5 L0 13 Z" fill="#FFF7E4"/><circle cx="6" cy="9" r="1.8" fill="#2A2620"/><text x="15.5" y="12.6" font-family="Noto Sans JP, sans-serif" font-size="7" font-weight="700" fill="#2A2620" text-anchor="middle">052</text></g></svg><span class="lt">落とし物：定期入れ</span></button>
     </div>
@@ -1097,7 +1097,7 @@ svg.stamp text{fill:currentColor;stroke:none;text-anchor:middle;font-family:var(
         <li class="s3"><span class="dot" aria-hidden="true"></span><span class="seg" aria-hidden="true"><i></i><i></i></span><span class="no">03<small>/04</small></span><span class="where">東京メトロ線の沿線</span><b>臨時係員として勤務</b><p>電車に乗り、実際の駅を巡りながら物語に参加します。</p></li>
         <li class="s4"><span class="dot" aria-hidden="true"></span><span class="no">04<small>/04</small></span><span class="where">集合とは別の場所</span><b>業務終了</b><p>仕事が終われば、体験も終了です。集合場所と解散場所は異なります。</p></li>
       </ol>
-      <div class="cta-row sale-cta"><a class="btn light" href="https://escape.id/uzu-org/e-metro_ishitsu/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/></svg><span class="tx">チケットを購入する</span></a></div>
+      <div class="cta-row sale-cta"><a class="btn light" href="https://escape.id/uzu-org/e-metro_ishitsu/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/></svg><span class="tx"><span class="pre-sale">チケット販売ページへ</span><span class="on-sale">チケットを購入する</span></span></a></div>
     </div>
   </div>
 </section>
@@ -1146,7 +1146,7 @@ svg.stamp text{fill:currentColor;stroke:none;text-anchor:middle;font-family:var(
       <p>ご購入の際は、参加日時、人数、参加条件を十分にご確認ください。</p>
     </div>
     <div class="cta-row">
-      <a class="btn light sale-cta" href="https://escape.id/uzu-org/e-metro_ishitsu/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/></svg><span class="tx">チケットを購入する</span></a>
+      <a class="btn light sale-cta" href="https://escape.id/uzu-org/e-metro_ishitsu/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/></svg><span class="tx"><span class="pre-sale">チケット販売ページへ</span><span class="on-sale">チケットを購入する</span></span></a>
       <a class="btn" href="#notes"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="tx">注意事項を読む</span></a>
     </div>
   </div>
@@ -1256,9 +1256,9 @@ svg.stamp text{fill:currentColor;stroke:none;text-anchor:middle;font-family:var(
   <div class="shade" aria-hidden="true"></div>
   <div class="wrap">
     <h2 id="final-h">ご応募、<br>お待ちしております。</h2>
-    <p class="pre-sale">チケットの発売情報は、公式LINEでもお知らせします。<br>ご登録のうえ、お待ちください。</p>
-    <p class="sale-cta">チケット発売中です。<br>公演の最新情報は、公式LINEでもお知らせします。</p>
-    <div class="cta-row"><a class="btn light sale-cta" href="https://escape.id/uzu-org/e-metro_ishitsu/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/></svg><span class="tx">チケットを購入する</span></a><a class="btn line" id="lineBtn" href="https://lin.ee/uscUJz7" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 4C7 4 3 7.2 3 11.2c0 2.6 1.7 4.9 4.3 6.2-.2.9-.7 2.4-.8 2.7 0 0 0 .3.2.3.3 0 2.9-1.9 3.9-2.6.5.1.9.1 1.4.1 5 0 9-3.2 9-7.2S17 4 12 4z"/></svg><span class="tx"><span class="ln">ウズプロダクション</span><span class="ln">公式LINEに登録する</span></span></a></div>
+    <p class="pre-sale">チケットは11月11日（水）20:00発売です。<br>公演の最新情報は、公式LINEでもお知らせします。</p>
+    <p class="on-sale">チケット発売中です。<br>公演の最新情報は、公式LINEでもお知らせします。</p>
+    <div class="cta-row"><a class="btn light sale-cta" href="https://escape.id/uzu-org/e-metro_ishitsu/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/></svg><span class="tx"><span class="pre-sale">チケット販売ページへ</span><span class="on-sale">チケットを購入する</span></span></a><a class="btn line" id="lineBtn" href="https://lin.ee/uscUJz7" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 4C7 4 3 7.2 3 11.2c0 2.6 1.7 4.9 4.3 6.2-.2.9-.7 2.4-.8 2.7 0 0 0 .3.2.3.3 0 2.9-1.9 3.9-2.6.5.1.9.1 1.4.1 5 0 9-3.2 9-7.2S17 4 12 4z"/></svg><span class="tx"><span class="ln">ウズプロダクション</span><span class="ln">公式LINEに登録する</span></span></a></div>
     <p class="sub-link"><a href="#info">勤務条件を見る</a></p>
     <div class="complete" id="complete" role="status">
       <div class="seal"><span>三件<b>完了</b></span></div>
@@ -1310,9 +1310,9 @@ svg.stamp text{fill:currentColor;stroke:none;text-anchor:middle;font-family:var(
     <p class="disclaimer">本公演はフィクションです。登場する部署・人物・業務は架空のものです。東京メトロでのお忘れ物に関するお問い合わせ先、受け取り場所、受け取り方法等は、東京メトロの公式ウェブサイト（<a href="https://www.tokyometro.jp/support/lost/index.html" target="_blank" rel="noopener">お忘れ物をしたときは｜東京メトロ</a>）でご案内しております。本ページでは承っておりません。</p>
     <div class="ft-cta">
       <p class="ft-cta-h">ご応募、お待ちしております。</p>
-      <p class="ft-cta-t pre-sale">チケットの発売情報は、公式LINEでもお知らせします。<br>ご登録のうえ、お待ちください。</p>
-      <p class="ft-cta-t sale-cta">チケット発売中です。<br>公演の最新情報は、公式LINEでもお知らせします。</p>
-      <a class="btn light sale-cta" href="https://escape.id/uzu-org/e-metro_ishitsu/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/></svg><span class="tx">チケットを購入する</span></a>
+      <p class="ft-cta-t pre-sale">チケットは11月11日（水）20:00発売です。<br>公演の最新情報は、公式LINEでもお知らせします。</p>
+      <p class="ft-cta-t on-sale">チケット発売中です。<br>公演の最新情報は、公式LINEでもお知らせします。</p>
+      <a class="btn light sale-cta" href="https://escape.id/uzu-org/e-metro_ishitsu/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/></svg><span class="tx"><span class="pre-sale">チケット販売ページへ</span><span class="on-sale">チケットを購入する</span></span></a>
       <a class="btn line" href="https://lin.ee/uscUJz7" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 4C7 4 3 7.2 3 11.2c0 2.6 1.7 4.9 4.3 6.2-.2.9-.7 2.4-.8 2.7 0 0 0 .3.2.3.3 0 2.9-1.9 3.9-2.6.5.1.9.1 1.4.1 5 0 9-3.2 9-7.2S17 4 12 4z"/></svg><span class="tx"><span class="ln">ウズプロダクション</span><span class="ln">公式LINEに登録する</span></span></a>
     </div>
     <p class="copy">© 2026 <span class="nw">UZU Production</span> / <span class="nw">Sally, Inc.</span> / <span class="nw">Tokyo Metro Co., Ltd.</span></p>
@@ -1329,7 +1329,7 @@ svg.stamp text{fill:currentColor;stroke:none;text-anchor:middle;font-family:var(
     <p class="sh-note">ページのどこかに落ちている異失物を3件拾うと業務完了</p>
   </div>
 </div>
-<a class="dock sale-cta" id="dock" href="https://escape.id/uzu-org/e-metro_ishitsu/" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/></svg><b>チケット</b><small>発売中</small><span class="ar" aria-hidden="true">→</span></a>
+<a class="dock sale-cta" id="dock" href="https://escape.id/uzu-org/e-metro_ishitsu/" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/></svg><b>チケット</b><small><span class="pre-sale">11/11 20:00発売</span><span class="on-sale">発売中</span></small><span class="ar" aria-hidden="true">→</span></a>
 <div class="slipToast" id="toast" role="status" aria-live="polite"><div class="tag"><div class="tag-in paper">
   <span class="hole" aria-hidden="true"></span>
   <p class="co">東京メトロ整備課</p>
@@ -1596,7 +1596,7 @@ svg.stamp text{fill:currentColor;stroke:none;text-anchor:middle;font-family:var(
 
 <script>
 /* 業務案内の「応募する」：「受け付けました」と出してから窓を閉じ、次へ進む。
-   発売後は、あわせてチケット販売ページを新しいタブで開く */
+   あわせてチケット販売ページを新しいタブで開く */
 (function(){
   var APPLY_URL='https://escape.id/uzu-org/e-metro_ishitsu/';
   var btn=document.getElementById('tkApply'),frame=document.getElementById('tkFrame'),next=document.getElementById('day'),ok=document.getElementById('tkOk');
@@ -1622,8 +1622,8 @@ svg.stamp text{fill:currentColor;stroke:none;text-anchor:middle;font-family:var(
   }
   btn.addEventListener('click',function(e){
     e.preventDefault();if(busy)return;busy=true;
-    /* 発売後は販売ページも開く。ポップアップ扱いされないよう、押したその場で開く */
-    if(!document.documentElement.hasAttribute('data-sale'))window.open(APPLY_URL,'_blank','noopener');
+    /* 販売ページも開く。ポップアップ扱いされないよう、押したその場で開く */
+    window.open(APPLY_URL,'_blank','noopener');
     if(btn.classList.contains('done')){go();busy=false;return}
     btn.classList.add('done');lb.textContent='応募を受け付けました';ar.textContent='';
     if(ok){ok.textContent='追ってご連絡を差し上げます。';ok.classList.add('on')}
