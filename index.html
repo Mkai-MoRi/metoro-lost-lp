@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="ja" data-sale="soon">
+<html lang="ja" data-sale="soon" data-early>
 <head>
 <script>
 /* チケット発売（日本時間 2026/11/11 20:00）を過ぎたら data-sale="soon" を外し、ボタンの文言を「発売中」に替える。
    開いたまま発売時刻をまたいでも切り替わるよう、手前ならその時刻に外す */
 (function(){var t=Date.parse('2026-11-11T20:00:00+09:00'),r=function(){document.documentElement.removeAttribute('data-sale')},d=t-Date.now();if(d<=0)r();else if(d<864e5)setTimeout(r,d)})();
+/* 平日10%OFFは 2026/11/21 のご購入分まで。11/22 0:00（日本時間）を過ぎたら data-early を外し、平日も土日祝と同じ料金を出す */
+(function(){var t=Date.parse('2026-11-22T00:00:00+09:00'),r=function(){document.documentElement.removeAttribute('data-early')},d=t-Date.now();if(d<=0)r();else if(d<864e5)setTimeout(r,d)})();
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -386,6 +388,8 @@ p{margin:0 0 1.2em}
 .price tbody th{text-align:left;letter-spacing:.2em}
 .price td b{font-family:var(--latin);font-size:22px;font-weight:500;letter-spacing:.04em}
 .price td small{font-size:11px;color:var(--dim)}
+.price td s{display:block;font-family:var(--latin);font-size:12px;color:var(--dim);letter-spacing:.04em;line-height:1.2}
+.price .pr-tag{display:block;margin-top:4px;font-size:10.5px;line-height:1.5;letter-spacing:.08em;color:var(--tactile)}
 .price td{white-space:nowrap}
 .nw{white-space:nowrap}
 .pnotes{list-style:none;padding:0;margin:14px 0 0;font-size:12.5px;color:var(--pale);line-height:1.9}
@@ -630,6 +634,8 @@ body.tk-full .head,body.tk-cover .head{opacity:0;pointer-events:none}
 /* チケット販売ページは公開済みなので、ボタンは発売前から押せる。文言だけ発売時刻で替える（<head> の先頭で data-sale="soon" を外す） */
 html[data-sale="soon"] .on-sale{display:none!important}
 html:not([data-sale="soon"]) .pre-sale{display:none!important}
+/* 平日10%OFF（11/21のご購入分まで）。期間中は .early、過ぎたら .late を出す */
+html[data-early] .late,html:not([data-early]) .early{display:none!important}
 @media (max-width:640px){
   .pouch{display:none!important}
   .dock{display:flex;position:fixed;left:16px;right:16px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:44;align-items:center;justify-content:center;gap:12px;padding:14px 18px;
@@ -978,7 +984,7 @@ svg.stamp text{fill:currentColor;stroke:none;text-anchor:middle;font-family:var(
       <dl class="glance">
         <div><dt>所要時間</dt><dd>約90-120分</dd></div>
         <div><dt>人数</dt><dd>1組2〜4名<small>組ごとの貸切</small></dd></div>
-        <div><dt>料金</dt><dd>1名 4,950円〜<small>税込</small></dd></div>
+        <div><dt>料金</dt><dd><span class="early">1名 4,950円〜<small>税込・平日10%OFF中</small></span><span class="late">1名 5,500円〜<small>税込</small></span></dd></div>
         <div><dt>集合</dt><dd>新宿三丁目駅<small>某所</small></dd></div>
       </dl>
       <div class="hero-cta">
@@ -1114,15 +1120,16 @@ svg.stamp text{fill:currentColor;stroke:none;text-anchor:middle;font-family:var(
       <div style="overflow-x:auto">
         <table class="price">
           <caption>チケット料金（1名あたり・税込）</caption>
-          <thead><tr><th scope="col" style="text-align:left">組の人数</th><th scope="col">平日</th><th scope="col">土日祝</th></tr></thead>
+          <thead><tr><th scope="col" style="text-align:left">組の人数</th><th scope="col">平日<span class="early pr-tag">11/21までのご購入で<br>10%OFF</span></th><th scope="col">土日祝</th></tr></thead>
           <tbody>
-            <tr><th scope="row">4名</th><td><b>4,950</b><small>円</small></td><td><b>5,500</b><small>円</small></td></tr>
-            <tr><th scope="row">3名</th><td><b>5,940</b><small>円</small></td><td><b>6,600</b><small>円</small></td></tr>
-            <tr><th scope="row">2名</th><td><b>7,920</b><small>円</small></td><td><b>8,800</b><small>円</small></td></tr>
+            <tr><th scope="row">4名</th><td><span class="early"><s>5,500</s><b>4,950</b></span><b class="late">5,500</b><small>円</small></td><td><b>5,500</b><small>円</small></td></tr>
+            <tr><th scope="row">3名</th><td><span class="early"><s>6,600</s><b>5,940</b></span><b class="late">6,600</b><small>円</small></td><td><b>6,600</b><small>円</small></td></tr>
+            <tr><th scope="row">2名</th><td><span class="early"><s>8,800</s><b>7,920</b></span><b class="late">8,800</b><small>円</small></td><td><b>8,800</b><small>円</small></td></tr>
           </tbody>
         </table>
       </div>
       <ul class="pnotes">
+        <li class="early">平日の料金は、11/21（土）までにご購入いただいた場合の割引価格（10%OFF）です。11/22以降のご購入分は、平日も土日祝と同じ料金となります。</li>
         <li>チケットは組単位での販売です。</li>
         <li>チケットの転売は固くお断りいたします。</li>
         <li>移動にかかる運賃・通信費は別途必要となります。</li>
