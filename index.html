@@ -5,7 +5,7 @@
 /* チケット発売（日本時間 2026/11/11 20:00）を過ぎたら data-sale="soon" を外し、ボタンの文言を「発売中」に替える。
    開いたまま発売時刻をまたいでも切り替わるよう、手前ならその時刻に外す */
 (function(){var t=Date.parse('2026-11-11T20:00:00+09:00'),r=function(){document.documentElement.removeAttribute('data-sale')},d=t-Date.now();if(d<=0)r();else if(d<864e5)setTimeout(r,d)})();
-/* 平日10%OFFは 2026/11/21 のご購入分まで。11/22 0:00（日本時間）を過ぎたら data-early を外し、平日も土日祝と同じ料金を出す */
+/* 平日10%OFFは 2026/11/21 のご購入分まで。11/22 0:00（日本時間）を過ぎたら data-early を外し、平日の通常料金に戻す */
 (function(){var t=Date.parse('2026-11-22T00:00:00+09:00'),r=function(){document.documentElement.removeAttribute('data-early')},d=t-Date.now();if(d<=0)r();else if(d<864e5)setTimeout(r,d)})();
 </script>
 <meta charset="utf-8">
@@ -984,7 +984,7 @@ svg.stamp text{fill:currentColor;stroke:none;text-anchor:middle;font-family:var(
       <dl class="glance">
         <div><dt>所要時間</dt><dd>約90-120分</dd></div>
         <div><dt>人数</dt><dd>1組2〜4名<small>組ごとの貸切</small></dd></div>
-        <div><dt>料金</dt><dd><span class="early">1名 4,950円〜<small>税込・平日10%OFF中</small></span><span class="late">1名 5,500円〜<small>税込</small></span></dd></div>
+        <div><dt>料金</dt><dd><span class="early">1名 4,455円〜<small>税込・平日10%OFF中</small></span><span class="late">1名 4,950円〜<small>税込</small></span></dd></div>
         <div><dt>集合</dt><dd>新宿三丁目駅<small>某所</small></dd></div>
       </dl>
       <div class="hero-cta">
@@ -1122,14 +1122,14 @@ svg.stamp text{fill:currentColor;stroke:none;text-anchor:middle;font-family:var(
           <caption>チケット料金（1名あたり・税込）</caption>
           <thead><tr><th scope="col" style="text-align:left">組の人数</th><th scope="col">平日<span class="early pr-tag">11/21までのご購入で<br>10%OFF</span></th><th scope="col">土日祝</th></tr></thead>
           <tbody>
-            <tr><th scope="row">4名</th><td><span class="early"><s>5,500</s><b>4,950</b></span><b class="late">5,500</b><small>円</small></td><td><b>5,500</b><small>円</small></td></tr>
-            <tr><th scope="row">3名</th><td><span class="early"><s>6,600</s><b>5,940</b></span><b class="late">6,600</b><small>円</small></td><td><b>6,600</b><small>円</small></td></tr>
-            <tr><th scope="row">2名</th><td><span class="early"><s>8,800</s><b>7,920</b></span><b class="late">8,800</b><small>円</small></td><td><b>8,800</b><small>円</small></td></tr>
+            <tr><th scope="row">4名</th><td><span class="early"><s>4,950</s><b>4,455</b></span><b class="late">4,950</b><small>円</small></td><td><b>5,500</b><small>円</small></td></tr>
+            <tr><th scope="row">3名</th><td><span class="early"><s>5,940</s><b>5,346</b></span><b class="late">5,940</b><small>円</small></td><td><b>6,600</b><small>円</small></td></tr>
+            <tr><th scope="row">2名</th><td><span class="early"><s>7,920</s><b>7,128</b></span><b class="late">7,920</b><small>円</small></td><td><b>8,800</b><small>円</small></td></tr>
           </tbody>
         </table>
       </div>
       <ul class="pnotes">
-        <li class="early">平日の料金は、11/21（土）までにご購入いただいた場合の割引価格（10%OFF）です。11/22以降のご購入分は、平日も土日祝と同じ料金となります。</li>
+        <li class="early">11/21（土）までのご購入分は、平日料金が10%OFFになります。11/22以降のご購入分は、通常の平日料金（4名 4,950円／3名 5,940円／2名 7,920円）です。</li>
         <li>チケットは組単位での販売です。</li>
         <li>チケットの転売は固くお断りいたします。</li>
         <li>移動にかかる運賃・通信費は別途必要となります。</li>
